@@ -32,8 +32,7 @@
     "clean:fix": "rm -rf node_modules coverage build dist docs package-lock.json",
     "build:react": "react-scripts build",
     "test": "react-scripts test",
-    "test:cov": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
+    "test:cov": "react-scripts test --coverage"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",
