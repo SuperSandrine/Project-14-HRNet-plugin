@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import './modal.styles.css';
 import CloseIcon from './../closeIcon.svg';
