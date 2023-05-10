@@ -1,16 +1,21 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault").default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/slicedToArray"));
 var _react = require("react");
 require("./modal.styles.css");
 var _closeIcon = _interopRequireDefault(require("./../closeIcon.svg"));
 var _SpinnerModal = _interopRequireDefault(require("./SpinnerModal"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /**
  * Creation of a modal component with parameters to personalise some functions
  * @param {Object} props - component props
@@ -32,7 +37,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 var Modal = function Modal(props) {
   var modalRef = (0, _react.useRef)(null);
   var _useState = (0, _react.useState)(null),
-    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    _useState2 = _slicedToArray(_useState, 2),
     newDataHref = _useState2[0],
     setNewDataHref = _useState2[1];
   var children = props.children,
@@ -239,6 +244,21 @@ var Modal = function Modal(props) {
     src: _closeIcon.default,
     width: '20px'
   })))) : null;
+};
+Modal.propTypes = {
+  children: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number, _propTypes.default.element]),
+  onClose: _propTypes.default.func.isRequired,
+  showModal: _propTypes.default.bool.isRequired,
+  title: _propTypes.default.string,
+  backDropClickAndClose: _propTypes.default.bool,
+  closeAllModalsBefore: _propTypes.default.bool,
+  fadeIn: _propTypes.default.bool,
+  animationDuration: _propTypes.default.string,
+  fadeOut: _propTypes.default.bool,
+  dataHref: _propTypes.default.string,
+  closureButton: _propTypes.default.string,
+  ajaxData: _propTypes.default.string,
+  customButtonColor: _propTypes.default.string
 };
 Modal.defaultProps = {
   animationDuration: '2',
