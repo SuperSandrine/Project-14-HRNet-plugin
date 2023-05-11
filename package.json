@@ -14,7 +14,9 @@
   "version": "1.0.8",
   "keywords": [
     "react",
-    "modal"
+    "modal",
+    "react-component",
+    "HRNet"
   ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

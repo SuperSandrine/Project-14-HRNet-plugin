@@ -75,11 +75,11 @@ var Modal = function Modal(props) {
       handleParentConditions();
     }
     if (fadeIn && animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeIn');
-      modalRef.current.style.setProperty('animation-duration', "".concat(animationDuration, "s"));
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeIn');
+      modalRef.current.parentElement.style.setProperty('animation-duration', "".concat(animationDuration, "s"));
     } else if (fadeIn && !animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeIn');
-      modalRef.current.style.setProperty('animation-duration', "2s");
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeIn');
+      modalRef.current.parentElement.style.setProperty('animation-duration', "2s");
     }
     if (customButtonColor) {
       var modal = document.querySelector('#modal');
@@ -105,14 +105,14 @@ var Modal = function Modal(props) {
       element.setAttribute('aria-hidden', false);
     });
     if (fadeOut && animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeOut');
-      modalRef.current.style.setProperty('animation-duration', "".concat(animationDuration, "s"));
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeOut');
+      modalRef.current.parentElement.style.setProperty('animation-duration', "".concat(animationDuration, "s"));
       setTimeout(function () {
         onClose();
       }, animationDuration * 1000 - 100);
     } else if (fadeOut && !animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeOut');
-      modalRef.current.style.setProperty('animation-duration', "2s");
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeOut');
+      modalRef.current.parentElement.style.setProperty('animation-duration', "2s");
       setTimeout(function () {
         onClose();
       }, 1900);

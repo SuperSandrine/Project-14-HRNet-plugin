@@ -64,14 +64,14 @@ const Modal = (props) => {
       handleParentConditions();
     }
     if (fadeIn && animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeIn');
-      modalRef.current.style.setProperty(
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeIn');
+      modalRef.current.parentElement.style.setProperty(
         'animation-duration',
         `${animationDuration}s`
       );
     } else if (fadeIn && !animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeIn');
-      modalRef.current.style.setProperty('animation-duration', `2s`);
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeIn');
+      modalRef.current.parentElement.style.setProperty('animation-duration', `2s`);
     }
     if (customButtonColor) {
       const modal = document.querySelector('#modal');
@@ -103,8 +103,8 @@ const Modal = (props) => {
       element.setAttribute('aria-hidden', false);
     });
     if (fadeOut && animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeOut');
-      modalRef.current.style.setProperty(
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeOut');
+      modalRef.current.parentElement.style.setProperty(
         'animation-duration',
         `${animationDuration}s`
       );
@@ -112,8 +112,8 @@ const Modal = (props) => {
         onClose();
       }, animationDuration * 1000 - 100);
     } else if (fadeOut && !animationDuration) {
-      modalRef.current.classList.add('tUv39-modal-fadeOut');
-      modalRef.current.style.setProperty('animation-duration', `2s`);
+      modalRef.current.parentElement.classList.add('tUv39-modal-fadeOut');
+      modalRef.current.parentElement.style.setProperty('animation-duration', `2s`);
       setTimeout(() => {
         onClose();
       }, 1900);
