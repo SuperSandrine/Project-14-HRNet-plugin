@@ -41,7 +41,7 @@ const Modal = (props) => {
     ajaxData,
     customButtonColor,
   } = props;
-  console.log('props de modal', props);
+  //console.log('props de modal', props);
 
   const notFocusable = document.querySelectorAll(
     '#root, #formContainer, header, main, footer'

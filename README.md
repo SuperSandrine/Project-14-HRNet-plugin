@@ -55,10 +55,32 @@ const test = () =>{
 | closeAllModalsBefore  | bool | false      | true/false  | If true, the component closes all previous opened modals. |
 | fadeIn        | bool        | false       | true/false  |If true, the component adds a fadeIn animation on modal displaying. This animation has a default duration of 2sec that can be changed with animationDuration props|
 | animationDuration | string  | 2 sec       | "5"         | This value should be a number in a string type. It will be the duration of the modal fade-in animation and fade-out in seconds.
-| fadeOut       | bool        | true/false  |If true, the component adds a fadeOut animation on modal closing. This animation has a default duration of 2sec that can be changed with animationDuration props|
+| fadeOut       | bool        | false       | true/false  |If true, the component adds a fadeOut animation on modal closing. This animation has a default duration of 2sec that can be changed with animationDuration props|
 | customButtonColor | string    | #1976d2 (blue hue) | "orange" | Controls colored part: the color of the close button and spinner. If added, the component changed his default color in the one chosen, can be in hexadecimal format, HSL and HSLA format, RGB  and RGBA format and name format.
-| dataHref      | string        | Default   | Description |Description |
-| ajaxData      | string        | 'data.id' | Description |Description |
+| dataHref      | string        |           | "https://www.npmjs.com/package/react-modal-tuv39" | The component is open through a <a> tag, then you have to get the href value from this link and add it in props with the dataHref prop.
+**function exemple** 
+```js
+const try =()=>{
+    const [montre4, setMontre4] = useState(false)
+    const [dataToGive, setDataToGive] = useState(null);
+    return (
+      <>
+  <a
+          href="https://www.npmjs.com/package/react-modal-tuv39"
+          onClick={(e) => {
+            setDataToGive(e.currentTarget.href);
+            setMontre4(true);
+          }}
+        />
+        <Modal
+        showModal={montre4}
+        onClose={()=>setMontre4(false)}
+        dataHref={dataToGive}
+        >
+        </>
+        )}
+        ```|
+| ajaxData      | string        | 'data.id' | "data.name" | If dataHref is an API, ajaxData is necessary to display some text or data from the API, It's the name of the data to be fetched from the URL. Note that it should began with "data.", as "data.city", or "data.phoneNumber". |
 
 ### CSS
 | class name    | Description |
