@@ -1,12 +1,12 @@
 :root {
-  --basicBlue: #1976d2;
-  --basicBlockerBg: rgba(0, 0, 0, 0.5);
+  --tUv39Blue: #1976d2;
+  --tUv39BlockerBg: rgba(0, 0, 0, 0.5);
 }
 
 .tUv39-modal-blocker-div {
   position: fixed;
   inset: 0px;
-  background-color: var(--basicBlockerBg);
+  background-color: var(--tUv39BlockerBg);
   backdrop-filter: blur(3px);
   display: flex;
   flex-direction: column;
@@ -16,13 +16,11 @@
   z-index: 2;
 }
 .tUv39-modal-fadeIn {
-  animation-name: fadeIn;
-  /* animation-duration: 4s; */
+  animation-name: tUv39FadeIn;
 }
 
 .tUv39-modal-fadeOut {
-  animation-name: fadeOut;
-  /* animation-duration: 4s; */
+  animation-name: tUv39FadeOut;
 }
 
 .tUv39-modal-container {
@@ -68,13 +66,10 @@
 }
 
 .tUv39-modalclose-button {
-  /* padding: 2vw; */
   padding: 6px 16px;
   border-radius: 4px;
   border: unset;
-  /* background-color: (var(--customButtonColor), #1976d2); */
-  background-color: var(--basicBlue);
-
+  background-color: var(--tUv39Blue);
   color: white;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-weight: 500;
@@ -85,6 +80,7 @@
   cursor: pointer;
   margin: 1em 0px 0px;
 }
+
 .tUv39-modalclose-button-default {
   position: absolute;
   display: flex;
@@ -92,7 +88,7 @@
   padding: 10px;
   border-radius: 4px;
   border: unset;
-  background-color: var(--basicBlue);
+  background-color: var(--tUv39Blue);
   color: white;
   cursor: pointer;
   right: -10px;
@@ -100,7 +96,7 @@
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes fadeIn {
+@keyframes tUv39fadeIn {
   from {
     opacity: 0;
   }
@@ -109,7 +105,7 @@
   }
 }
 
-@keyframes fadeOut {
+@keyframes tUv39fadeOut {
   from {
     opacity: 1;
   }

@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 require("./modal.styles.css");
-var _closeIcon = _interopRequireDefault(require("./../closeIcon.svg"));
+var _closeIcon = _interopRequireDefault(require("./../assets/closeIcon.svg"));
 var _SpinnerModal = _interopRequireDefault(require("./SpinnerModal"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _jsxRuntime = require("react/jsx-runtime");
@@ -22,20 +22,21 @@ function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefine
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; } /**
                                                                        * Creation of a modal component with parameters to personalise some functions
                                                                        * @param {Object} props - component props
-                                                                       * @param {(String|Number|Element)} props.children - add a descriptive paragraph in the modal.
-                                                                       * @param {Function} props.onClose- function that permit the modal closure by switching false the showModal state.
-                                                                       * @param {Boolean} props.showModal - Boolean that determines if the modal should be shown or not thanks to parent state
-                                                                       * @param {String} props.title - Add title to modal
-                                                                       * @param {Boolean} props.backDropClickAndClose - Boolean that determines if the modal should be closed when the backdrop is clicked
-                                                                       * @param {Boolean} props.closeAllModalsBefore - Boolean that determines if all modals should be closed before this modal is shown (close only modals created with the same component, in the case of cascade modal)
-                                                                       * @param {Boolean} props.fadeIn - Boolean that determines if the modal should fade in when shown
-                                                                       * @param {Number} props.animationDuration - This value should be a number in a string type. The duration of the modal fade-in animation and fade-out in seconds
+                                                                       * @param {(String|Number|Element)} props.children - This add a descriptive paragraph in the modal.
+                                                                       * @param {Function} props.onClose- OnClose function that permit the modal closure by switching false the showModal state.
+                                                                       * @param {Boolean} props.showModal - Boolean that determines if the modal should be shown or not thanks to parent state.
+                                                                       * @param {String} props.title - String adds title to modal
+                                                                       * @param {Boolean} props.backDropClickAndClose - Boolean that determines if the modal should be closed when the backdrop is clicked.
+                                                                       * @param {Boolean} props.closeAllModalsBefore - Boolean that determines if all modals should be closed before this modal is shown (close only modals created with the same component, in the case of cascade modal).
+                                                                       * @param {Boolean} props.fadeIn - Boolean that determines if the modal should fade in when shown.
+                                                                       * @param {Number} props.animationDuration - This value should be a number in a string type. The duration of the modal fade-in animation and fade-out in seconds.
                                                                        * @param {Boolean} props.fadeOut - Boolean that determines if the modal should fade out when closed
-                                                                       * @param {String} props.dataHref - The URL to fetch data from to render in the modal. URL is provided by the event which turn on the modal, if the event is a click on a tag <a>, then dataHref should be (event.currentTarget.href)
+                                                                       * @param {Object} props.dataHref - The dataHref should provide event.target object from event which turn on the modal. If the event is a click on a tag <a>, then dataHref should be (event.target)
                                                                        * @param {string} props.closureButton - Text that appear in the closure button of modal. If it's absent, a default cross button will be displayed instead.
                                                                        * @param {String} props.ajaxData - The name of the data to fetch from the URL if the dataHref is an API. Note that it should began with "data.", as "data.name", or "data.phoneNumber".
                                                                        * @param {String} props.customButtonColor - The color of the close button and spinner in hexadecimal format, HSL and HSLA format, RGB  and RGBA format and name format
-                                                                       * @returns The Modal component
+                                                                       * @param {Boolean} props.dataHrefIsAnAPI - Boolean that determines if the external link clicked is an API.
+                                                                       * @returns {JSX.Element|null} The Modal component
                                                                        */
 var Modal = function Modal(props) {
   var modalRef = (0, _react.useRef)(null);
@@ -55,8 +56,8 @@ var Modal = function Modal(props) {
     dataHref = props.dataHref,
     closureButton = props.closureButton,
     ajaxData = props.ajaxData,
-    customButtonColor = props.customButtonColor;
-  console.log('props de modal', props);
+    customButtonColor = props.customButtonColor,
+    dataHrefIsAnAPI = props.dataHrefIsAnAPI;
   var notFocusable = document.querySelectorAll('#root, #formContainer, header, main, footer');
   (0, _react.useEffect)(function () {
     if (showModal) {
@@ -65,8 +66,10 @@ var Modal = function Modal(props) {
       setBlocker();
     }
   }, [showModal]);
-  //WARN au survol, qual es?
 
+  /**
+   * Sets the parameters for the modal based on the provided configurations from props.
+   */
   var setParams = function setParams() {
     if (closeAllModalsBefore) {
       closeAllModals();
@@ -83,13 +86,21 @@ var Modal = function Modal(props) {
     }
     if (customButtonColor) {
       var modal = document.querySelector('#modal');
-      modal.style.setProperty('--basicBlue', customButtonColor);
+      modal.style.setProperty('--tUv39Blue', customButtonColor);
     }
   };
+
+  /**
+  * Sets the blocker to prevent scrolling of the body behind modal.
+  */
   var setBlocker = function setBlocker() {
     document.body.style.overflow = 'hidden';
     modalRef.current.setAttribute('overflow', '');
   };
+
+  /**
+  * Sets the accessibility attributes for the modal and element behind, also run keyboard navigation.
+  */
   var setAccessibility = function setAccessibility() {
     notFocusable.forEach(function (element) {
       element.setAttribute('aria-hidden', true);
@@ -98,6 +109,9 @@ var Modal = function Modal(props) {
     document.addEventListener('keydown', handleKeyboardNavigation(event, modalRef.current));
     modalRef.current.focus();
   };
+  /**
+   * Handles the closing of the modal and restores the previous state.
+   */
   var handleModalClose = function handleModalClose() {
     document.body.style.overflow = 'auto';
     document.removeEventListener('keydown', handleKeyboardNavigation);
@@ -120,6 +134,13 @@ var Modal = function Modal(props) {
       onClose();
     }
   };
+
+  /**
+  * Handles keyboard navigation within the modal with a focus trap, and eventlistener.
+  * @param {KeyboardEvent} event - The keyboard event.
+  * @param {HTMLElement} parentElement - The parent element of the modal.
+  */
+
   var handleKeyboardNavigation = function handleKeyboardNavigation(event, parentElement) {
     event.preventDefault();
     event.stopPropagation();
@@ -162,44 +183,63 @@ var Modal = function Modal(props) {
     event: _propTypes.default.object.isRequired,
     parentElement: _propTypes.default.object.isRequired
   };
+
+  /**
+   * Handles the conditions from the parent to adjust a modal behavious according the kind of link that display modal.
+   */
   var handleParentConditions = function handleParentConditions() {
-    if (dataHref.includes('#')) {
-      var href = decodeURI(dataHref);
-      var anchor = href.split('#')[1];
-      setNewDataHref(anchor);
-    }
-    if (dataHref.includes('#') === false) {
-      setNewDataHref( /*#__PURE__*/(0, _jsxRuntime.jsx)(_SpinnerModal.default, {}));
-      if (!/^data\./.test(ajaxData) | !ajaxData) {
-        console.error("No or invalid prop 'ajaxData' supplied to 'Modal'. Value must start with 'data.'");
-      } else if (/^data\./.test(ajaxData)) {
-        fetch(dataHref).then(function (response) {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        // eslint-disable-next-line no-unused-vars
-        .then(function (data) {
-          var func = eval("(".concat(ajaxData, ")"));
-          setNewDataHref( /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-            children: func
+    if (dataHref !== null && dataHref !== void 0 && dataHref.localName.includes('a')) {
+      //display ID of the anchor clicked
+      if (dataHref.href.includes('#')) {
+        var href = decodeURI(dataHref.href);
+        var anchor = href.split('#')[1];
+        setNewDataHref(anchor);
+      }
+      if (dataHref.href.includes('#') === false) {
+        setNewDataHref( /*#__PURE__*/(0, _jsxRuntime.jsx)(_SpinnerModal.default, {}));
+        if (!dataHrefIsAnAPI) {
+          setNewDataHref( /*#__PURE__*/(0, _jsxRuntime.jsx)("a", {
+            href: dataHref.href,
+            target: "_top",
+            children: dataHref.href
           }));
-        }).catch(function (error) {
-          console.error('Il y a eu un problème avec la requête fetch:', error);
-          setNewDataHref( /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-            children: "\"fetch return error\""
-          }));
-        });
+        }
+        if (!/^data\./.test(ajaxData) && dataHrefIsAnAPI) {
+          console.error("No or invalid prop 'ajaxData' supplied to 'Modal'. Value must start with 'data.'");
+        } else if (/^data\./.test(ajaxData) && dataHrefIsAnAPI) {
+          fetch(dataHref.href).then(function (response) {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          // eslint-disable-next-line no-unused-vars
+          .then(function (data) {
+            var func = eval("(".concat(ajaxData, ")"));
+            setNewDataHref( /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+              children: func
+            }));
+          }).catch(function (error) {
+            console.error('Il y a eu un problème avec la requête fetch:', error);
+            setNewDataHref( /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+              children: "\"fetch return error\""
+            }));
+          });
+        }
       }
     }
   };
 
-  //PARAM
+  /**
+   * Handles the click on the backdrop and closes the modal if the props is true.
+   */
   var handleBackDropClick = function handleBackDropClick() {
     backDropClickAndClose ? handleModalClose() : null;
   };
-  //PARAM
+  /** 
+    * Closes all modals previously open (from this modal component), except the current one.
+    * If you want to close other modal components, you have to add class ('.tUv78) to the div blocker that contain the modal container.
+    */
   var closeAllModals = function closeAllModals() {
     var modals = document.querySelectorAll('.tUv78');
     for (var i = 0; i < modals.length - 1; i++) {
@@ -268,10 +308,11 @@ Modal.propTypes = {
   fadeIn: _propTypes.default.bool,
   animationDuration: _propTypes.default.string,
   fadeOut: _propTypes.default.bool,
-  dataHref: _propTypes.default.string,
+  dataHref: _propTypes.default.object,
   closureButton: _propTypes.default.string,
   ajaxData: _propTypes.default.string,
-  customButtonColor: _propTypes.default.string
+  customButtonColor: _propTypes.default.string,
+  dataHrefIsAnAPI: _propTypes.default.bool
 };
 Modal.defaultProps = {
   animationDuration: '2',
