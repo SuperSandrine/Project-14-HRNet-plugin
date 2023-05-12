@@ -5,6 +5,19 @@ You can custom content and style, from title, description text, button text to c
 It also deal with <a> link and could display some information from id anchor, extern link or data from API.
 
 This module was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Prerequisites
+
+- ![Node][NodeBadge]
+- ![Npm][NpmBadge]
+- ![React in a badge][ReactBadge]
+
+*use of :*
+- ![html][HtmlBadge]
+- ![css][CssBadge]
+- ![JS][JsBadge]
+- ![ VS in a badge][VisualStudioBadge]
+
+
 
 ## Installation
 ```shell
@@ -46,7 +59,8 @@ const test = () =>{
 ```
 
 ### Second example of usage: case of link button, to get and provide href attribute to component through props.
-The datahref props expect a "event.target" that provide an object as bellow: "<a class="whatever appear" href="https://www.npmjs.com/package/react-modal-tuv39" >...</a>"
+The datahref props expect a "event.target" that provide an object as bellow: 
+eg : <a class="whatever appear" href="https://www.npmjs.com/package/react-modal-tuv39" > some text</a>
 ```js
 const try =()=>{
     const [appear, setAppear] = useState(false)
@@ -65,9 +79,17 @@ const try =()=>{
         onClose={()=>setAppear(false)}
         dataHref={dataToGive}
         >
+        Here is the link clicked:
+        </Modal>
         </>
         )}
 ```
+### More?
+#### Breakpoint
+There is a breakpoint that change the modal display, in higher 600px screen width, the modal will fit to his content to adjust width.
+In lower case, the modal width is settle as '90vw'
+
+
 
 ## Documentation
 
@@ -106,5 +128,22 @@ It is possible to customise some more of the style with the reference bellow:
 |               | .tUv39-modalclose-button-default | Styles applied to modal default button. |
 |               | .tUv39-modal-fadeIn      | animation styles, when class called, animated the element (in this component, applied on .tUv39-modal-blocker-div )     |
 |               | .tUv39-modal-fadeOu      | Styles applied to modal button.       |
+
+## Author
+
+![author][MeBadge]
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[NodeBadge]: https://img.shields.io/badge/Node-v%2014.21.1-forestgreen
+[NpmBadge]: https://img.shields.io/badge/Npm-v%206.14.17-firebrick
+[MeBadge]: https://img.shields.io/badge/Author-Sandrine%20Mestas-blue?style=for-the-badge
+[ReactBadge]: https://img.shields.io/badge/Library%20React-v%2018.2.0-mediumaquamarine
+[CssBadge]: https://img.shields.io/badge/Language-css-blue
+[JsBadge]: https://img.shields.io/badge/Language-JavaScript-yellow
+[HtmlBadge]: https://img.shields.io/badge/Language-html-orange
+[VisualStudioBadge]: https://img.shields.io/badge/IDE-VisualStudio-steelblue
+
 
 
