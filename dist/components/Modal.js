@@ -58,7 +58,7 @@ var Modal = function Modal(props) {
     ajaxData = props.ajaxData,
     customButtonColor = props.customButtonColor,
     dataHrefIsAnAPI = props.dataHrefIsAnAPI;
-  var notFocusable = document.querySelectorAll('#root, #formContainer, header, main, footer');
+  var notFocusable = document.querySelectorAll('#root, #formContainer, header, main, footer, :not(#modal)');
   (0, _react.useEffect)(function () {
     if (showModal) {
       setParams();
@@ -138,13 +138,12 @@ var Modal = function Modal(props) {
   /**
   * Handles keyboard navigation within the modal with a focus trap, and eventlistener.
   * @param {KeyboardEvent} event - The keyboard event.
-  * @param {HTMLElement} parentElement - The parent element of the modal.
+  * @param {HTMLElement} parentElement - This is the parent of elements in the modal, so it refer to the modal container, so called id="modal"
   */
-
   var handleKeyboardNavigation = function handleKeyboardNavigation(event, parentElement) {
     event.preventDefault();
     event.stopPropagation();
-    var tabbableElementsSelectors = '#dialogTitle, #dialogDesc, #dialogButton';
+    var tabbableElementsSelectors = '#dialogTitle, #dialogDesc, #dialogCloseButton, #dialogCloseDefaultButton';
     var allTabbableElements = parentElement.querySelectorAll(tabbableElementsSelectors);
     var trapFocusInModal = function trapFocusInModal(event, parentElement) {
       var index = Array.from(allTabbableElements).findIndex(function (i) {
@@ -170,10 +169,9 @@ var Modal = function Modal(props) {
         //console.log('où est le focus', document.activeElement);
       } else if (event.keyCode !== 9) {
         event.preventDefault();
-        //event.stopImmediatePropagation();
         if (event.keyCode === 27) {
           handleModalClose();
-        } else if (document.activeElement.id === 'dialogCloseButton' && event.keyCode === 13) {
+        } else if ((document.activeElement.id === 'dialogCloseButton' || document.activeElement.id === 'dialogCloseDefaultButton') && event.keyCode === 13) {
           handleModalClose();
         }
       }
@@ -280,10 +278,13 @@ var Modal = function Modal(props) {
         className: "tUv39-modalclose-button",
         "aria-label": "close modal button",
         tabIndex: 3,
+        style: {
+          customButtonColor: customButtonColor
+        },
         children: closureButton
       }) : /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
         onClick: handleModalClose,
-        id: "dialogButton",
+        id: "dialogCloseDefaultButton",
         className: "tUv39-modalclose-button-default",
         "aria-label": "close modal button",
         tabIndex: 3,

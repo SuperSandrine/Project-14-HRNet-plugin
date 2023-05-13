@@ -45,7 +45,7 @@ const Modal = (props) => {
   } = props;
 
   const notFocusable = document.querySelectorAll(
-    '#root, #formContainer, header, main, footer'
+    '#root, #formContainer, header, main, footer, :not(#modal)'
   );
 
   useEffect(() => {
@@ -142,14 +142,13 @@ const Modal = (props) => {
   /**
  * Handles keyboard navigation within the modal with a focus trap, and eventlistener.
  * @param {KeyboardEvent} event - The keyboard event.
- * @param {HTMLElement} parentElement - The parent element of the modal.
+ * @param {HTMLElement} parentElement - This is the parent of elements in the modal, so it refer to the modal container, so called id="modal"
  */
-
   const handleKeyboardNavigation = (event, parentElement) => {
     event.preventDefault();
     event.stopPropagation();
-    const tabbableElementsSelectors =
-      '#dialogTitle, #dialogDesc, #dialogButton';
+    const tabbableElementsSelectors = 
+    '#dialogTitle, #dialogDesc, #dialogCloseButton, #dialogCloseDefaultButton';
     const allTabbableElements = parentElement.querySelectorAll(
       tabbableElementsSelectors
     );
@@ -178,13 +177,11 @@ const Modal = (props) => {
         //console.log('où est le focus', document.activeElement);
       } else if (event.keyCode !== 9) {
         event.preventDefault();
-        //event.stopImmediatePropagation();
         if (event.keyCode === 27) {
           handleModalClose();
-        } else if (
-          document.activeElement.id === 'dialogCloseButton' &&
-          event.keyCode === 13
-        ) {
+        } else if ((document.activeElement.id === 'dialogCloseButton' ||
+        document.activeElement.id === 'dialogCloseDefaultButton') &&
+      event.keyCode === 13) {
           handleModalClose();
         }
       }
@@ -303,14 +300,14 @@ const Modal = (props) => {
             className="tUv39-modalclose-button"
             aria-label="close modal button"
             tabIndex={3}
+            style={{ customButtonColor }}
           >
             {closureButton}
           </button>
         ) : (
           <button
             onClick={handleModalClose}
-            id="dialogButton"
-            className="tUv39-modalclose-button-default"
+            id="dialogCloseDefaultButton"            className="tUv39-modalclose-button-default"
             aria-label="close modal button"
             tabIndex={3}
             style={{ customButtonColor }}
