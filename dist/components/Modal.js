@@ -85,8 +85,8 @@ var Modal = function Modal(props) {
       modalRef.current.parentElement.style.setProperty('animation-duration', "2s");
     }
     if (customButtonColor) {
-      var modal = document.querySelector('#modal');
-      modal.style.setProperty('--tUv39Blue', customButtonColor);
+      var modal = document.querySelectorAll('.tUv78');
+      modal[modal.length - 1].style.setProperty('--tUv39Blue', customButtonColor);
     }
   };
 
@@ -241,7 +241,7 @@ var Modal = function Modal(props) {
   var closeAllModals = function closeAllModals() {
     var modals = document.querySelectorAll('.tUv78');
     for (var i = 0; i < modals.length - 1; i++) {
-      var closeButton = modals[i].querySelector('button#dialogButton');
+      var closeButton = modals[i].querySelector('button#dialogCloseButton, button#dialogCloseDefaultButton');
       closeButton.click();
     }
   };
