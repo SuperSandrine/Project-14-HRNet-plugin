@@ -9,7 +9,10 @@ This module was bootstrapped with [Create React App](https://github.com/facebook
 
 - ![Node][NodeBadge]
 - ![Npm][NpmBadge]
+
+*remarkable dependencies*
 - ![React in a badge][ReactBadge]
+- ![PropTypes in a badge][PropTypesBadge]
 
 *use of :*
 - ![html][HtmlBadge]
@@ -140,6 +143,7 @@ It is possible to customise some more of the style with the reference bellow:
 [NpmBadge]: https://img.shields.io/badge/Npm-v%206.14.17-firebrick
 [MeBadge]: https://img.shields.io/badge/Author-Sandrine%20Mestas-blue?style=for-the-badge
 [ReactBadge]: https://img.shields.io/badge/Library%20React-v%2018.2.0-mediumaquamarine
+[PropTypesBadge]: https://img.shields.io/badge/Library%20PropTypes-v%2015.8.1-royalblue
 [CssBadge]: https://img.shields.io/badge/Language-css-blue
 [JsBadge]: https://img.shields.io/badge/Language-JavaScript-yellow
 [HtmlBadge]: https://img.shields.io/badge/Language-html-orange
