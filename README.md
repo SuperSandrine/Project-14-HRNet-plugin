@@ -1,8 +1,12 @@
 # Getting Started with react-modal-tuv39
 
 It's a costumisable modal with different props.
+
+This modal is an element displayed on top of the main content in the purpose to display additional information in reaction of a previous actions (button click, form submission validate,...)
+
 You can custom content and style, from title, description text, button text to color button and duration of fadeIn/fadeOut animation.
 It also deal with <a> link and could display some information from id anchor, extern link or data from API.
+You can refer to <a href="# Documentation"> bellow documention </a> to understand how to use props.
 
 This module was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Prerequisites
@@ -33,7 +37,11 @@ import { Modal } from 'react-modal-tuv39'
 ## Usage
 The react-modal-tuv39 component was originally created to replace a jquery modal in a global react project.
 
-### First example of usage
+A modal is ran when an action is done 
+
+### First example of usage:
+The modal need a local state to be fired, this local state is boolean which open/close modal.
+
 ```js
 import React from 'react';
 import { Modal } from 'react-modal-tuv39';
@@ -96,9 +104,10 @@ In lower case, the modal width is settle as '90vw'
 
 ## Documentation
 
-Here are props of the modal component element.
-Some of this props are required (*).
-Some of this props work with together for an action.
+Here are modal component props.
+Some of those props are required (*).
+Some of those props work together for an action. (eg: fadeIn + animationDuration)
+
 ### Props
 
 | Name          | Type        | Default     | Example     | Description |
