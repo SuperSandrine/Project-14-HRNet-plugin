@@ -1,12 +1,12 @@
 # Getting Started with react-modal-tuv39
 
-It's a costumisable modal with different props.
+It's a customisable modal with different props.
 
-This modal is an element displayed on top of the main content in the purpose to display additional information in reaction of a previous actions (button click, form submission validate,...)
+This modal is an element displayed on top of the main content in the purpose of displaying additional information in reaction to previous action (button click, form submission validation,...)
 
-You can custom content and style, from title, description text, button text to color button and duration of fadeIn/fadeOut animation.
-It also deal with <a> link and could display some information from id anchor, extern link or data from API.
-You can refer to <a href="# Documentation"> bellow documention </a> to understand how to use props.
+You can customise content and style, including the title, description text, button text, button color, and duration of fadeIn/fadeOut animation.
+It also deals with <a> links and could display some information from ID anchors, external links or data from an API.
+You can refer to <a href="# Documentation"> the documention below </a> to understand how to use the props.
 
 This module was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Prerequisites
